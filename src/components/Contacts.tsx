@@ -43,21 +43,27 @@ export default function Contacts() {
             </div>
 
             <div className="border-l-4 border-cyan-500 pl-6 hover:translate-x-2 transition">
-              <p className="font-bold text-gray-900 mb-1">💬 Мессенджеры</p>
+              <p className="font-bold text-gray-900 mb-1">💬 Мессенджеры (по номеру телефона)</p>
               <p className="text-gray-600">
-                <a href="https://wa.me/79991234567" className="text-blue-600 hover:text-blue-700 font-semibold">
+                <a className="text-blue-600 hover:text-blue-700 font-semibold">
                   WhatsApp
                 </a>
                 {" / "}
-                <a href="https://t.me/stroigroup" className="text-blue-600 hover:text-blue-700 font-semibold">
+                <a className="text-blue-600 hover:text-blue-700 font-semibold">
                   Telegram
                 </a>
+				 
               </p>
             </div>
 
             <div className="border-l-4 border-blue-500 pl-6 hover:translate-x-2 transition">
               <p className="font-bold text-gray-900 mb-1">🕐 График работы</p>
               <p className="text-gray-600">Пн–Вс: 08:00–23:00</p>
+            </div>
+
+			<div className="border-l-4 border-blue-500 pl-6 hover:translate-x-2 transition">
+              <p className="font-bold text-gray-900 mb-1">📧 E-mail</p>
+              <p className="text-gray-600">artembrigadier1@gmail.com</p>
             </div>
 
             <div className="border-l-4 border-cyan-500 pl-6 hover:translate-x-2 transition">

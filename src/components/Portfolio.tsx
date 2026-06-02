@@ -1,31 +1,59 @@
-const projects = [
+"use client";
+
+import { useEffect, useState } from "react";
+
+type Project = {
+  title: string;
+  location?: string;
+  image: string;
+  description: string;
+};
+
+const projects: Project[] = [
   {
-    title: "Дом из газобетона",
-    location: "Ярославль",
-    image:
-      "/images/GasBetonHouse.jpg",
+    "title": "Строительство двухэтажного коттеджа из газобетона с облицовкой кирпичом",
+    "location": "Ярославская область, КП «Земля у леса»",
+    "image": "images/house1.jpg",
+    "description": "Капитальный загородный дом для постоянного проживания. Стены возведены из теплого газобетона и облицованы светлым керамическим кирпичом в европейском стиле. Обустроена сложная скатная кровля из металлочерепицы и встроенный теплый гараж с подъемными воротами. Сдали объект в чистовой наружной отделке под ключ."
   },
   {
-    title: "Каркасный дом",
-    location: "Московская область",
-    image:
-      "/images/house1.jpg",
+    "title": "Возведение фронтонов и комбинированная облицовка фасада кирпичом",
+    "location": "Ивановская область, пос. Загородный",
+    "image": "images/building.jpg",
+    "description": "Процесс строительства коробки дома из поризованных блоков. На фото — этап филигранной кладки фронтона мансардного этажа. Используем двухцветный лицевой кирпич: соломенный оттенок для основного массива стен и контрастный шоколадный для выделения углов и оконных проемов. Строго контролируем геометрию углов и ровность швов."
   },
   {
-    title: "Евроремонт квартиры",
-    location: "Санкт-Петербург",
-    image:
-      "/images/house2.jpg",
+    "title": "Строительство загородного гостевого комплекса из профилированного бруса",
+    "location": "г. Ярославль, эко-парк",
+    "image": "images/house4.jpg",
+    "description": "Масштабный проект коммерческой недвижимости в традиционном русском стиле. Двухэтажный отель из сруба с открытой террасой на первом этаже и балконом на втором. Провели полный комплекс работ: от заливки фундамента и сборки венцов до финишной шлифовки, обработки антисептиками и контрастной покраски наличников."
   },
   {
-    title: "Терраса и веранда",
-    location: "Москва",
-    image:
-      "/images/house3.jpg",
+    "title": "Строительство энергоэффективного одноэтажного дома (Баварская кладка)",
+    "location": "Московская область, д. Подушкино",
+    "image": "images/house7.jpg",
+    "description": "Современный одноэтажный дом из блоков с премиальной облицовкой клинкерным кирпичом с эффектом меланжа. Смонтирована четырехскатная вальмовая крыша из мягкой битумной черепицы (цвет графит), установлена водосточная система. Проемы полностью подготовлены к монтажу панорамного остекления. На участке организован вывоз мусора."
   },
+  {
+    "title": "Комплексный ремонт и чистовая отделка кухни-гостиной в стиле лофт-минимализм",
+    "location": "г. Кострома, ул. Лесная",
+    "image": "images/kitchens.jpg",
+    "description": "Внутренние отделочные работы под ключ. Выполнили выравнивание стен, монтаж натяжного потолка, зонированное многоуровневое освещение (треки + подвесы) и укладку керамогранита. Изготовили и смонтировали полубарную стойку. Стены покрыты премиальной моющейся краской глубокого сложного оттенка."
+  }
 ];
 
 export default function Portfolio() {
+  const [selected, setSelected] = useState<Project | null>(null);
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelected(null);
+    };
+
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, []);
+
   return (
     <section id="portfolio" className="py-20 bg-white relative z-10">
       <div className="max-w-6xl mx-auto px-4">
@@ -40,11 +68,13 @@ export default function Portfolio() {
           </p>
         </div>
 
+        {/* GRID */}
         <div className="grid md:grid-cols-2 gap-6">
           {projects.map((item, i) => (
             <div
               key={i}
-              className="group relative overflow-hidden rounded-xl border-3 border-blue-500 shadow-blue-sm hover:shadow-blue-lg transition"
+              onClick={() => setSelected(item)}
+              className="group relative cursor-pointer overflow-hidden rounded-xl border-2 border-blue-500 shadow-sm hover:shadow-lg transition"
             >
               <img
                 src={item.image}
@@ -54,14 +84,57 @@ export default function Portfolio() {
 
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-6 text-white">
                 <h3 className="text-2xl font-bold">{item.title}</h3>
-                <p className="text-sm text-gray-300 mt-1">{item.location}</p>
+                {item.location && (
+                  <p className="text-sm text-gray-300 mt-1">{item.location}</p>
+                )}
               </div>
 
-              {/* Overlay accent */}
               <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-blue-400 to-cyan-400 transform -translate-x-1 group-hover:translate-x-0 transition" />
             </div>
           ))}
         </div>
+
+        {/* POPUP */}
+        {selected && (
+          <div
+            onClick={() => setSelected(null)}
+            className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4"
+          >
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white max-w-3xl w-full rounded-xl overflow-hidden shadow-2xl animate-[fadeIn_.2s_ease]"
+            >
+              <img
+                src={selected.image}
+                alt={selected.title}
+                className="w-full h-80 object-cover"
+              />
+
+              <div className="p-6">
+                <h3 className="text-2xl font-bold mb-2">
+                  {selected.title}
+                </h3>
+
+                <p className="text-gray-600 mb-4">
+                  {selected.description}
+                </p>
+
+                <div className="text-sm text-gray-500 border-t pt-4">
+                  <p>✔ Полный цикл работ</p>
+                  <p>✔ Гарантия качества</p>
+                  <p>✔ Работа по договору</p>
+                </div>
+
+                <button
+                  onClick={() => setSelected(null)}
+                  className="mt-6 bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition"
+                >
+                  Закрыть
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
       </div>
     </section>

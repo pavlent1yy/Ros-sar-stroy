@@ -1,33 +1,33 @@
 const reasons = [
   {
-    title: "Профессионализм",
-    desc: "Команда опытных строителей и дизайнеров. Качество работ гарантировано договором.",
-    icon: "👷"
+    title: "Без предоплаты",
+    desc: "Строительство начинается без авансовых платежей. Оплата только по факту выполненных и принятых этапов работ.",
+    icon: "💳"
   },
   {
-    title: "Прозрачность",
-    desc: "Смета согласована заранее. Без скрытых доплат и неожиданных расходов.",
+    title: "Прозрачные условия",
+    desc: "Фиксированная смета согласуется до начала работ. Никаких скрытых платежей и неожиданных расходов.",
     icon: "📋"
   },
   {
-    title: "Сроки",
-    desc: "Работаем по четкому графику. Штраф за просрочку прописан в договоре.",
+    title: "Профессиональная команда",
+    desc: "Опытные строители и инженеры, работающие по стандартам качества и договору.",
+    icon: "👷"
+  },
+  {
+    title: "Сроки под контролем",
+    desc: "Четкий график выполнения работ с фиксацией этапов и ответственности за задержки.",
     icon: "⏱️"
   },
   {
     title: "Материалы",
-    desc: "Используем только сертифицированные материалы от надежных поставщиков.",
-    icon: "✅"
+    desc: "Используем только сертифицированные и проверенные строительные материалы от надежных поставщиков.",
+    icon: "🏗️"
   },
   {
-    title: "Гарантия",
-    desc: "2 года гарантии на все работы. Готовы отвечать за качество.",
+    title: "Гарантия и поддержка",
+    desc: "Гарантия на выполненные работы и сопровождение после сдачи объекта.",
     icon: "🛡️"
-  },
-  {
-    title: "Поддержка",
-    desc: "Работаем 24/7. Можете позвонить в любое время с вопросом или проблемой.",
-    icon: "📞"
   },
 ];
 
@@ -38,11 +38,19 @@ export default function WhyUs() {
 
         <div className="mb-12 text-center">
           <h2 className="text-4xl md:text-5xl font-bold font-mono tracking-tight mb-4">
-            <span className="gradient-text">Почему мы?</span>
+            <span className="gradient-text">Почему выбирают нас</span>
           </h2>
 
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Надежный партнер, с которым вы можете быть спокойны
+            Строим коттеджи, частные дома и коммерческие объекты под ключ с полной прозрачностью и контролем качества
+          </p>
+        </div>
+
+        {/* ключевое УТП */}
+        <div className="mb-10 max-w-3xl mx-auto text-center bg-gradient-to-r from-blue-500/10 via-cyan-500/10 to-blue-500/10 border-2 border-cyan-400 rounded-2xl p-6 shadow-sm">
+          <p className="text-gray-800 font-semibold text-sm md:text-base">
+            Строительство коттеджей, частных домов, коммерческих и промышленных объектов под ключ.  
+            <span className="text-blue-600 font-bold"> Без предоплаты и авансов</span> — оплата только за выполненные и принятые этапы работ.
           </p>
         </div>
 
@@ -50,14 +58,20 @@ export default function WhyUs() {
           {reasons.map((item, i) => (
             <div
               key={i}
-              className="bg-white border-l-4 border-b-4 border-blue-500 rounded-xl p-6 shadow-blue-sm hover:shadow-blue-md transition group hover:translate-y-[-4px]"
+              className="bg-white border-l-4 border-b-4 border-blue-500 rounded-xl p-6 shadow-sm hover:shadow-md transition group hover:translate-y-[-4px]"
             >
-              <div className="text-4xl mb-4 group-hover:scale-110 transition transform">{item.icon}</div>
-              
-              <h3 className="text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
-              
-              {/* Accent line */}
+              <div className="text-4xl mb-4 group-hover:scale-110 transition">
+                {item.icon}
+              </div>
+
+              <h3 className="text-lg font-bold text-gray-900 mb-2">
+                {item.title}
+              </h3>
+
+              <p className="text-gray-600 text-sm leading-relaxed">
+                {item.desc}
+              </p>
+
               <div className="mt-4 h-1 w-0 bg-gradient-to-r from-blue-500 to-cyan-500 group-hover:w-12 transition rounded-full" />
             </div>
           ))}

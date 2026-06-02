@@ -1,71 +1,132 @@
+"use client";
+
+import { useState } from "react";
+
 const services = [
   {
-    title: "Строительство домов",
-    desc: "Каркасные, газобетон, кирпич, брус и монолитные дома под ключ.",
-    icon: "🏗️"
+    title: "Строительство домов под ключ",
+    desc: "Каркасные, газобетонные, кирпичные, брусовые и монолитные дома.",
+    fullDesc:
+      "Полный цикл строительства: от подготовки участка и фундамента до коробки, кровли, инженерных систем и внутренней отделки. Работаем по проекту или помогаем с его разработкой. Поэтапное выполнение работ с прозрачной сметой и договором.",
+    icon: "🏗️",
   },
   {
     title: "Фундаменты",
     desc: "Ленточные, плитные, свайные и монолитные основания.",
-    icon: "🔨"
+    fullDesc:
+      "Устройство фундаментов под разные типы домов с учётом грунта и нагрузки. Подготовка основания, армирование, заливка бетона, гидроизоляция и утепление. Работаем по проекту или с предварительным расчётом.",
+    icon: "🧱",
   },
   {
     title: "Кровельные работы",
-    desc: "Металлочерепица, мягкая кровля, профнастил.",
-    icon: "🏠"
+    desc: "Монтаж и ремонт кровли из разных материалов.",
+    fullDesc:
+      "Стропильные системы, утепление, паро- и гидроизоляция, монтаж металлочерепицы, мягкой кровли и профнастила. Полный цикл кровельных работ, включая ремонт и замену старых конструкций.",
+    icon: "🏠",
   },
   {
-    title: "Фасады",
-    desc: "Штукатурка, кирпич, сайдинг и фасадные панели.",
-    icon: "🎨"
+    title: "Фасадные работы",
+    desc: "Утепление и внешняя отделка домов.",
+    fullDesc:
+      "Штукатурные фасады, облицовочный кирпич, сайдинг и фасадные панели. Утепление фасадов, монтаж вентилируемых систем и декоративная отделка с защитой от внешних воздействий.",
+    icon: "🎨",
   },
   {
     title: "Инженерные системы",
-    desc: "Электрика, сантехника, отопление, тёплые полы.",
-    icon: "⚙️"
+    desc: "Электрика, водоснабжение, отопление и вентиляция.",
+    fullDesc:
+      "Проектирование и монтаж инженерных систем: электроснабжение, водопровод, канализация, отопление, тёплые полы и вентиляция. Работаем с соблюдением строительных норм и стандартов.",
+    icon: "⚙️",
   },
   {
     title: "Ремонт и отделка",
-    desc: "Черновая и чистовая отделка, евроремонт под ключ.",
-    icon: "✨"
+    desc: "Черновая, чистовая отделка и евроремонт.",
+    fullDesc:
+      "Выполняем ремонт квартир и домов под ключ: штукатурка, стяжка, плитка, покраска, монтаж потолков и чистовая отделка. Работаем как с новостройками, так и со вторичным жильём.",
+    icon: "✨",
   },
 ];
 
 export default function Services() {
+  const [selected, setSelected] = useState<(typeof services)[0] | null>(null);
+
   return (
-    <section className="py-20 bg-gradient-to-br from-blue-50 to-cyan-50 border-y-4 border-blue-500">
+    <section
+      id="services"
+      className="py-20 bg-gradient-to-br from-blue-50 to-cyan-50 border-y-4 border-blue-500"
+    >
       <div className="max-w-6xl mx-auto px-4 relative z-10">
-        
+
+        {/* HEADER */}
         <div className="mb-12">
           <h2 className="text-4xl md:text-5xl font-bold font-mono tracking-tight mb-4">
             <span className="gradient-text">Основные услуги</span>
           </h2>
 
           <p className="text-lg text-gray-600 max-w-2xl">
-            Выполняем полный цикл работ — от фундамента до чистовой отделки.
+            Выполняем полный цикл строительных и отделочных работ — от фундамента до сдачи объекта под ключ.
           </p>
         </div>
 
+        {/* GRID */}
         <div className="grid md:grid-cols-3 gap-6">
           {services.map((item, i) => (
             <div
               key={i}
-              className="bg-white border-3 border-blue-500 rounded-xl p-6 shadow-blue-sm hover:shadow-blue-md hover:translate-y-[-8px] transition group cursor-pointer relative overflow-hidden"
+              onClick={() => setSelected(item)}
+              className="bg-white border-3 border-blue-500 rounded-xl p-6 shadow-sm hover:shadow-lg hover:translate-y-[-8px] transition cursor-pointer relative overflow-hidden group"
             >
-              {/* Hover background */}
+              {/* hover glow */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-cyan-50 opacity-0 group-hover:opacity-100 transition -z-10" />
-              
+
               <div className="text-3xl mb-3">{item.icon}</div>
-              <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
-              <p className="mt-3 text-sm text-gray-600 leading-relaxed">{item.desc}</p>
-              
-              {/* Гирлянда */}
-              <div className="mt-4 inline-block">
-                <div className="h-1 w-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full group-hover:w-full transition" />
-              </div>
+
+              <h3 className="text-lg font-bold text-gray-900">
+                {item.title}
+              </h3>
+
+              <p className="mt-3 text-sm text-gray-600 leading-relaxed">
+                {item.desc}
+              </p>
+
+              <div className="mt-4 h-1 w-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full group-hover:w-full transition" />
             </div>
           ))}
         </div>
+
+        {/* POPUP */}
+        {selected && (
+          <div
+            onClick={() => setSelected(null)}
+            className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4"
+          >
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white max-w-xl w-full rounded-xl shadow-2xl p-6"
+            >
+              <div className="text-4xl mb-3">{selected.icon}</div>
+
+              <h3 className="text-2xl font-bold mb-2">
+                {selected.title}
+              </h3>
+
+              <p className="text-gray-500 mb-4">
+                {selected.desc}
+              </p>
+
+              <p className="text-gray-700 leading-relaxed">
+                {selected.fullDesc}
+              </p>
+
+              <button
+                onClick={() => setSelected(null)}
+                className="mt-6 bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition"
+              >
+                Закрыть
+              </button>
+            </div>
+          </div>
+        )}
 
       </div>
     </section>

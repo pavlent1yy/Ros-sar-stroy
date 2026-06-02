@@ -22,7 +22,7 @@ export default function Header() {
           href="/"
           className="font-bold text-xl text-blue-700 font-mono tracking-wide"
         >
-          StroiGroup
+          RosSarStroy
         </Link>
 
         {/* NAV */}
