@@ -1,64 +1,87 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Header() {
   const pathname = usePathname();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
     { href: "#construction", label: "Строительство и ремонт" },
-	{ href: "#services", label: "Услуги"},
+    { href: "#services", label: "Услуги" },
     { href: "#portfolio", label: "Портфолио" },
     { href: "#contacts", label: "Контакты" },
   ];
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-blue-500/30 shadow-sm">
-      <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-0 h-auto sm:h-16 flex items-center justify-between">
 
         {/* LOGO */}
         <Link
           href="/"
-          className="font-bold text-xl text-blue-700 font-mono tracking-wide"
+          className="font-bold text-lg sm:text-xl text-blue-700 font-mono tracking-wide whitespace-nowrap"
         >
           RosSarStroy
         </Link>
 
-        {/* NAV */}
-        <nav className="hidden md:flex gap-8 text-sm font-medium text-gray-700">
-          {navItems.map((item) => {
-            const active = pathname === item.href;
-
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`relative transition ${
-                  active ? "text-blue-600" : "hover:text-blue-600"
-                }`}
-              >
-                {item.label}
-
-                {/* underline */}
-                <span
-                  className={`absolute left-0 -bottom-1 h-[2px] bg-blue-500 transition-all ${
-                    active ? "w-full" : "w-0 group-hover:w-full"
-                  }`}
-                />
-              </Link>
-            );
-          })}
+        {/* NAV - Desktop */}
+        <nav className="hidden md:flex gap-6 sm:gap-8 text-sm font-medium text-gray-700">
+          {navItems.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="hover:text-blue-600 transition"
+            >
+              {item.label}
+            </a>
+          ))}
         </nav>
 
-        {/* CTA */}
+        {/* CTA - Desktop */}
         <a
           href="#contacts"
-          className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-sm px-5 py-2.5 rounded-lg font-semibold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition"
+          className="hidden sm:inline-block bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg font-semibold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition"
         >
           Связаться
         </a>
+
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="md:hidden flex flex-col gap-1 w-6 h-6"
+        >
+          <span className={`h-0.5 w-full bg-gray-700 transition transform ${mobileMenuOpen ? "rotate-45 translate-y-1.5" : ""}`} />
+          <span className={`h-0.5 w-full bg-gray-700 transition ${mobileMenuOpen ? "opacity-0" : ""}`} />
+          <span className={`h-0.5 w-full bg-gray-700 transition transform ${mobileMenuOpen ? "-rotate-45 -translate-y-1.5" : ""}`} />
+        </button>
       </div>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-white border-t border-gray-200 px-4 py-4 space-y-3">
+          {navItems.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              onClick={() => setMobileMenuOpen(false)}
+              className="block text-sm font-medium text-gray-700 hover:text-blue-600 transition py-2"
+            >
+              {item.label}
+            </a>
+          ))}
+
+          <a
+            href="#contacts"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block w-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-sm font-semibold px-4 py-2.5 rounded-lg text-center shadow-md hover:shadow-lg transition mt-4"
+          >
+            Связаться
+          </a>
+        </div>
+      )}
     </header>
   );
 }

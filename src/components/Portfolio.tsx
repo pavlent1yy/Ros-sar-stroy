@@ -55,37 +55,37 @@ export default function Portfolio() {
   }, []);
 
   return (
-    <section id="portfolio" className="py-20 bg-white relative z-10">
-      <div className="max-w-6xl mx-auto px-4">
+    <section id="portfolio" className="py-16 sm:py-20 bg-white relative z-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
 
-        <div className="mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold font-mono tracking-tight mb-4">
+        <div className="mb-10 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-mono tracking-tight mb-3 sm:mb-4">
             <span className="gradient-text">Портфолио работ</span>
           </h2>
 
-          <p className="text-lg text-gray-600 max-w-2xl">
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl">
             Реальные объекты строительства и ремонта, выполненные нашей бригадой.
           </p>
         </div>
 
         {/* GRID */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
           {projects.map((item, i) => (
             <div
               key={i}
               onClick={() => setSelected(item)}
-              className="group relative cursor-pointer overflow-hidden rounded-xl border-2 border-blue-500 shadow-sm hover:shadow-lg transition"
+              className="group relative cursor-pointer overflow-hidden rounded-lg sm:rounded-xl border-2 border-blue-500 shadow-sm hover:shadow-lg transition"
             >
               <img
                 src={item.image}
                 alt={item.title}
-                className="h-72 w-full object-cover group-hover:scale-110 transition duration-700"
+                className="h-48 sm:h-72 w-full object-cover group-hover:scale-110 transition duration-700"
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-6 text-white">
-                <h3 className="text-2xl font-bold">{item.title}</h3>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-3 sm:p-6 text-white">
+                <h3 className="text-lg sm:text-2xl font-bold leading-tight">{item.title}</h3>
                 {item.location && (
-                  <p className="text-sm text-gray-300 mt-1">{item.location}</p>
+                  <p className="text-xs sm:text-sm text-gray-300 mt-1">{item.location}</p>
                 )}
               </div>
 
@@ -102,24 +102,24 @@ export default function Portfolio() {
           >
             <div
               onClick={(e) => e.stopPropagation()}
-              className="bg-white max-w-3xl w-full rounded-xl overflow-hidden shadow-2xl animate-[fadeIn_.2s_ease]"
+              className="bg-white max-w-3xl w-full rounded-lg sm:rounded-xl overflow-hidden shadow-2xl max-h-[90vh] overflow-y-auto"
             >
               <img
                 src={selected.image}
                 alt={selected.title}
-                className="w-full h-80 object-cover"
+                className="w-full h-48 sm:h-80 object-cover"
               />
 
-              <div className="p-6">
-                <h3 className="text-2xl font-bold mb-2">
+              <div className="p-4 sm:p-6">
+                <h3 className="text-xl sm:text-2xl font-bold mb-2">
                   {selected.title}
                 </h3>
 
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 text-sm sm:text-base mb-4">
                   {selected.description}
                 </p>
 
-                <div className="text-sm text-gray-500 border-t pt-4">
+                <div className="text-xs sm:text-sm text-gray-500 border-t pt-4 space-y-1">
                   <p>✔ Полный цикл работ</p>
                   <p>✔ Гарантия качества</p>
                   <p>✔ Работа по договору</p>
@@ -127,7 +127,7 @@ export default function Portfolio() {
 
                 <button
                   onClick={() => setSelected(null)}
-                  className="mt-6 bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition"
+                  className="mt-4 sm:mt-6 bg-blue-600 text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg hover:bg-blue-700 transition w-full sm:w-auto text-sm sm:text-base"
                 >
                   Закрыть
                 </button>

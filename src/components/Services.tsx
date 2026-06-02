@@ -53,43 +53,43 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="py-20 bg-gradient-to-br from-blue-50 to-cyan-50 border-y-4 border-blue-500"
+      className="py-16 sm:py-20 bg-gradient-to-br from-blue-50 to-cyan-50 border-y-4 border-blue-500"
     >
-      <div className="max-w-6xl mx-auto px-4 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
 
         {/* HEADER */}
-        <div className="mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold font-mono tracking-tight mb-4">
+        <div className="mb-10 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-mono tracking-tight mb-3 sm:mb-4">
             <span className="gradient-text">Основные услуги</span>
           </h2>
 
-          <p className="text-lg text-gray-600 max-w-2xl">
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl">
             Выполняем полный цикл строительных и отделочных работ — от фундамента до сдачи объекта под ключ.
           </p>
         </div>
 
         {/* GRID */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-4 sm:gap-6">
           {services.map((item, i) => (
             <div
               key={i}
               onClick={() => setSelected(item)}
-              className="bg-white border-3 border-blue-500 rounded-xl p-6 shadow-sm hover:shadow-lg hover:translate-y-[-8px] transition cursor-pointer relative overflow-hidden group"
+              className="bg-white border-3 border-blue-500 rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm hover:shadow-lg hover:translate-y-[-8px] transition cursor-pointer relative overflow-hidden group"
             >
               {/* hover glow */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-cyan-50 opacity-0 group-hover:opacity-100 transition -z-10" />
 
-              <div className="text-3xl mb-3">{item.icon}</div>
+              <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">{item.icon}</div>
 
-              <h3 className="text-lg font-bold text-gray-900">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900">
                 {item.title}
               </h3>
 
-              <p className="mt-3 text-sm text-gray-600 leading-relaxed">
+              <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-gray-600 leading-relaxed">
                 {item.desc}
               </p>
 
-              <div className="mt-4 h-1 w-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full group-hover:w-full transition" />
+              <div className="mt-3 sm:mt-4 h-1 w-8 sm:w-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full group-hover:w-full transition" />
             </div>
           ))}
         </div>
@@ -102,25 +102,25 @@ export default function Services() {
           >
             <div
               onClick={(e) => e.stopPropagation()}
-              className="bg-white max-w-xl w-full rounded-xl shadow-2xl p-6"
+              className="bg-white max-w-xl w-full rounded-lg sm:rounded-xl shadow-2xl p-4 sm:p-6 max-h-[90vh] overflow-y-auto"
             >
-              <div className="text-4xl mb-3">{selected.icon}</div>
+              <div className="text-3xl sm:text-4xl mb-2 sm:mb-3">{selected.icon}</div>
 
-              <h3 className="text-2xl font-bold mb-2">
+              <h3 className="text-xl sm:text-2xl font-bold mb-2">
                 {selected.title}
               </h3>
 
-              <p className="text-gray-500 mb-4">
+              <p className="text-gray-500 text-sm sm:text-base mb-4">
                 {selected.desc}
               </p>
 
-              <p className="text-gray-700 leading-relaxed">
+              <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
                 {selected.fullDesc}
               </p>
 
               <button
                 onClick={() => setSelected(null)}
-                className="mt-6 bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition"
+                className="mt-4 sm:mt-6 bg-blue-600 text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg hover:bg-blue-700 transition text-sm sm:text-base w-full sm:w-auto"
               >
                 Закрыть
               </button>
