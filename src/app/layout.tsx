@@ -18,10 +18,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ru">
-	<body className={`${inter.className} bg-white text-zinc-900`}>
-		<Header />
-		<main className="pt-16">{children}</main>
-	</body>
+      <body className={inter.className}>
+        <div className="blueprint-grid" />
+        <Header />
+        <main className="relative z-10">{children}</main>
+      </body>
     </html>
   );
 }

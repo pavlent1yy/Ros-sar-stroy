@@ -3,57 +3,62 @@ const projects = [
     title: "Дом из газобетона",
     location: "Ярославль",
     image:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+      "/images/GasBetonHouse.jpg",
   },
   {
     title: "Каркасный дом",
     location: "Московская область",
     image:
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511",
+      "/images/house1.jpg",
   },
   {
     title: "Евроремонт квартиры",
     location: "Санкт-Петербург",
     image:
-      "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6",
+      "/images/house2.jpg",
   },
   {
     title: "Терраса и веранда",
     location: "Москва",
     image:
-      "https://images.unsplash.com/photo-1598928506311-c55ded91a20c",
+      "/images/house3.jpg",
   },
 ];
 
 export default function Portfolio() {
   return (
-    <section className="py-20 bg-zinc-50">
+    <section id="portfolio" className="py-20 bg-white relative z-10">
       <div className="max-w-6xl mx-auto px-4">
 
-        <h2 className="text-3xl md:text-4xl font-semibold">
-          Портфолио работ
-        </h2>
+        <div className="mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold font-mono tracking-tight mb-4">
+            <span className="gradient-text">Портфолио работ</span>
+          </h2>
 
-        <p className="mt-4 text-zinc-600 max-w-2xl">
-          Реальные объекты строительства и ремонта, выполненные нашей бригадой.
-        </p>
+          <p className="text-lg text-gray-600 max-w-2xl">
+            Реальные объекты строительства и ремонта, выполненные нашей бригадой.
+          </p>
+        </div>
 
-        <div className="mt-10 grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-6">
           {projects.map((item, i) => (
             <div
               key={i}
-              className="group relative overflow-hidden rounded-xl"
+              className="group relative overflow-hidden rounded-xl border-3 border-blue-500 shadow-blue-sm hover:shadow-blue-lg transition"
             >
               <img
                 src={item.image}
                 alt={item.title}
-                className="h-72 w-full object-cover group-hover:scale-105 transition duration-500"
+                className="h-72 w-full object-cover group-hover:scale-110 transition duration-700"
               />
 
-              <div className="absolute inset-0 bg-black/40 flex flex-col justify-end p-6 text-white">
-                <h3 className="text-xl font-semibold">{item.title}</h3>
-                <p className="text-sm text-zinc-200">{item.location}</p>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-6 text-white">
+                <h3 className="text-2xl font-bold">{item.title}</h3>
+                <p className="text-sm text-gray-300 mt-1">{item.location}</p>
               </div>
+
+              {/* Overlay accent */}
+              <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-blue-400 to-cyan-400 transform -translate-x-1 group-hover:translate-x-0 transition" />
             </div>
           ))}
         </div>

@@ -1,92 +1,76 @@
+"use client";
+
+import { useState } from "react";
+
 export default function Contacts() {
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    message: ""
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
   return (
-    <section id="contacts" className="py-20 bg-zinc-50">
+    <section id="contacts" className="py-20 bg-white relative z-10">
       <div className="max-w-6xl mx-auto px-4">
 
-        <h2 className="text-3xl md:text-4xl font-semibold">
-          Контакты
-        </h2>
+        <div className="mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold font-mono tracking-tight mb-4">
+            <span className="gradient-text">Контакты</span>
+          </h2>
 
-        <p className="mt-4 text-zinc-600 max-w-2xl">
-          Свяжитесь с нами для расчёта стоимости и консультации по вашему проекту.
-        </p>
-
-        <div className="mt-10 grid md:grid-cols-2 gap-10">
-
-          {/* контакты */}
-          <div className="space-y-4 text-zinc-700">
-            <div>
-              <p className="font-semibold">Телефон</p>
-              <p>+7 (999) 123-45-67</p>
-            </div>
-
-            <div>
-              <p className="font-semibold">Мессенджеры</p>
-              <p>WhatsApp / Telegram</p>
-            </div>
-
-            <div>
-              <p className="font-semibold">График работы</p>
-              <p>Пн–Вс: 05:00–23:00</p>
-            </div>
-
-            <div>
-              <p className="font-semibold">География</p>
-              <p>Ярославль, Москва, Санкт-Петербург и регионы РФ</p>
-            </div>
-          </div>
-
-          {/* форма */}
-          <form
-            className="bg-white border border-zinc-200 rounded-xl p-6 space-y-4"
-            action="https://formsubmit.co/your-email@example.com"
-            method="POST"
-          >
-            <input
-              type="text"
-              name="name"
-              placeholder="Ваше имя"
-              className="w-full border border-zinc-200 p-3 rounded-md"
-              required
-            />
-
-            <input
-              type="tel"
-              name="phone"
-              placeholder="Телефон"
-              className="w-full border border-zinc-200 p-3 rounded-md"
-              required
-            />
-
-            <textarea
-              name="message"
-              placeholder="Что нужно построить или отремонтировать"
-              className="w-full border border-zinc-200 p-3 rounded-md"
-              rows={4}
-            />
-
-            <button
-              type="submit"
-              className="w-full bg-amber-600 text-white py-3 rounded-md hover:bg-amber-700 transition"
-            >
-              Отправить заявку
-            </button>
-
-            <p className="text-xs text-zinc-500">
-              Нажимая кнопку, вы соглашаетесь на обработку данных.
-            </p>
-          </form>
-
+          <p className="text-lg text-gray-600 max-w-2xl">
+            Свяжитесь с нами для расчёта стоимости и консультации по вашему проекту.
+          </p>
         </div>
 
-        {/* карта
-        <div className="mt-10">
-          <iframe
-            className="w-full h-64 rounded-xl border"
-            loading="lazy"
-            src="https://yandex.ru/map-widget/v1/?um=constructor%3Aexample"
-          />
-        </div> */}
+        <div className="grid md:grid-cols-2 gap-12">
+
+          {/* Информация */}
+          <div className="space-y-6">
+            
+            <div className="border-l-4 border-blue-500 pl-6 hover:translate-x-2 transition">
+              <p className="font-bold text-gray-900 mb-1">📞 Телефон</p>
+              <a href="tel:+79066342664" className="text-blue-600 hover:text-blue-700 font-semibold">
+                +7 (906) 634-26-64
+              </a>
+            </div>
+
+            <div className="border-l-4 border-cyan-500 pl-6 hover:translate-x-2 transition">
+              <p className="font-bold text-gray-900 mb-1">💬 Мессенджеры</p>
+              <p className="text-gray-600">
+                <a href="https://wa.me/79991234567" className="text-blue-600 hover:text-blue-700 font-semibold">
+                  WhatsApp
+                </a>
+                {" / "}
+                <a href="https://t.me/stroigroup" className="text-blue-600 hover:text-blue-700 font-semibold">
+                  Telegram
+                </a>
+              </p>
+            </div>
+
+            <div className="border-l-4 border-blue-500 pl-6 hover:translate-x-2 transition">
+              <p className="font-bold text-gray-900 mb-1">🕐 График работы</p>
+              <p className="text-gray-600">Пн–Вс: 08:00–23:00</p>
+            </div>
+
+            <div className="border-l-4 border-cyan-500 pl-6 hover:translate-x-2 transition">
+              <p className="font-bold text-gray-900 mb-1">📍 География</p>
+              <p className="text-gray-600">
+                Ярославль, Москва, Санкт-Петербург и регионы РФ
+              </p>
+            </div>
+
+          </div>
+
+
+        </div>
 
       </div>
     </section>
