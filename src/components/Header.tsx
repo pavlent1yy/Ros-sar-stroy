@@ -9,10 +9,11 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { href: "#construction", label: "Строительство и ремонт" },
-    { href: "#services", label: "Услуги" },
-    { href: "#portfolio", label: "Портфолио" },
-    { href: "#contacts", label: "Контакты" },
+    { href: "/#construction", label: "Строительство и ремонт" },
+    { href: "/#services", label: "Услуги" },
+    { href: "/#portfolio", label: "Портфолио" },
+    { href: "/#contacts", label: "Контакты" },
+    { href: "/videos", label: "Видео с объектов" },
   ];
 
   return (

@@ -21,7 +21,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-[90vh] md:h-[90vh] flex items-center pt-20 md:pt-16 pb-10 md:pb-0 overflow-hidden">
+    <section className="relative min-h-[90vh] md:h-[90vh] flex items-center pt-20 md:pt-16 pb-10 md:pb-0 overflow-hidden" id="construction">
 
       {/* BACKGROUND SLIDER */}
       <div className="absolute inset-0">
