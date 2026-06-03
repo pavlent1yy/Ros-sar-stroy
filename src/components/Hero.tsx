@@ -44,21 +44,37 @@ export default function Hero() {
       {/* CONTENT */}
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 text-white z-10 w-full">
 
-        {/* badge */}
-        <div className="mb-6 sm:mb-8 inline-flex items-center gap-2 sm:gap-3 bg-gradient-to-r from-blue-500/20 via-cyan-500/20 to-blue-500/20 border border-cyan-400/60 backdrop-blur-xl px-3 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-semibold text-cyan-100 shadow-lg shadow-cyan-500/20 flex-wrap">
-          <span className="text-lg sm:text-2xl">🏦</span>
-          <span className="leading-tight">
-            Ипотека под <b className="text-cyan-300">4%</b> на строительство домов
-          </span>
-        </div>
-
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight font-mono tracking-tight max-w-3xl">
           Строительство домов и ремонт под ключ
         </h1>
 
-        <p className="mt-4 sm:mt-6 text-gray-200 max-w-2xl text-sm sm:text-base md:text-lg leading-relaxed font-light">
-          Более 10 лет опыта. Строим частные дома, коттеджи, коммерческие и промышленные объекты в Ярославле, Москве, Санкт-Петербурге и регионах России.
+        <p className="mt-4 md:mb-8 sm:mt-6 text-gray-200 max-w-2xl text-sm sm:text-base md:text-lg leading-relaxed font-light">
+          Более 10 лет опыта и 8000 проектов. Строим частные дома, коттеджи, коммерческие и промышленные объекты в Ярославле, Москве, Санкт-Петербурге и регионах России.
         </p>
+		<a
+		href="#contacts"
+  		className="inline-flex items-center gap-4 bg-gradient-to-r from-cyan-500/25 via-blue-500/25 to-cyan-500/25 border-2 border-cyan-300 backdrop-blur-xl px-5 sm:px-8 py-4 sm:py-5 rounded-2xl shadow-2xl shadow-cyan-500/30 hover:scale-[1.02] hover:border-cyan-200 hover:shadow-cyan-400/40 transition-all duration-300 cursor-pointer">
+		<div className="text-3xl sm:text-5xl">
+			🏦
+		</div>
+
+		<div className="flex flex-col">
+			<span className="text-xs uppercase tracking-wider text-cyan-200">
+			Специальная программа
+			</span>
+
+			<span className="font-semibold">
+			Ипотека на строительство дома от
+			<span className="ml-2 text-cyan-300 text-xl font-bold">
+				3%
+			</span>
+			</span>
+
+			<span className="text-sm text-white/80">
+			Нажмите для консультации
+			</span>
+		</div>
+		</a>
 
         {/* CTA */}
         <div className="mt-8 sm:mt-10 flex gap-3 sm:gap-4 flex-col sm:flex-row w-full sm:w-auto">
@@ -75,7 +91,9 @@ export default function Hero() {
           >
             Наши услуги
           </a>
+		  
         </div>
+
 
         {/* TRUST */}
         <div className="mt-10 sm:mt-12 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 text-xs sm:text-sm text-gray-200 font-medium">
@@ -96,7 +114,8 @@ export default function Hero() {
         <div className="mt-4 sm:mt-6 text-xs text-gray-300 max-w-2xl leading-relaxed">
           Строим частные дома, коттеджи, коммерческие и промышленные здания.
           Работа по этапам без авансов — оплата по факту выполненных работ.
-        </div>
+		  Разработка проета осуществляется в том числе индивидуально по вашему техническому заданию. Свяжитесь с нами для консультации и расчёта стоимости вашего проекта.
+        </div>    
       </div>
     </section>
   );

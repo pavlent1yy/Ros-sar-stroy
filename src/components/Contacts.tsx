@@ -26,7 +26,7 @@ export default function Contacts() {
           </h2>
 
           <p className="text-base sm:text-lg text-gray-600 max-w-2xl">
-            Свяжитесь с нами для расчёта стоимости и консультации по вашему проекту.
+            Свяжитесь с нами для расчёта стоимости и консультации по вашему и нашему проекту. 
           </p>
         </div>
 
@@ -38,7 +38,7 @@ export default function Contacts() {
             <div className="border-l-4 border-blue-500 pl-4 sm:pl-6 hover:translate-x-1 sm:hover:translate-x-2 transition">
               <p className="font-bold text-gray-900 mb-1 text-sm sm:text-base">📞 Телефон</p>
               <a href="tel:+79066342664" className="text-blue-600 hover:text-blue-700 font-semibold text-sm sm:text-base">
-                +7 (906) 634-26-64
+                +7 (906) 634-26-64 | +7 (960) 543-51-81
               </a>
             </div>
 

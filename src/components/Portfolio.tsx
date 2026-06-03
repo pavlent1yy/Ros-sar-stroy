@@ -64,7 +64,7 @@ export default function Portfolio() {
           </h2>
 
           <p className="text-base sm:text-lg text-gray-600 max-w-2xl">
-            Реальные объекты строительства и ремонта, выполненные нашей бригадой.
+            Реальные объекты строительства и ремонта, выполненные нашей бригадой. 
           </p>
         </div>
 
@@ -94,6 +94,10 @@ export default function Portfolio() {
           ))}
         </div>
 
+		<h4 className="text-base sm:text-lg text-gray-600 max-w-2xl">
+		Стоимость разработки проекта от 1000 до 10000 рублей в зависимости от сложности. Свяжитесь с нами для консультации и расчёта стоимости вашего проекта.
+		</h4>
+		
         {/* POPUP */}
         {selected && (
           <div
