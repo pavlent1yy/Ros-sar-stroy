@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 
-const services = [
+const SERVICES = [
   {
     title: "Строительство домов под ключ",
     desc: "Каркасные, газобетонные, кирпичные, брусовые и монолитные дома.",
@@ -48,7 +48,17 @@ const services = [
 ];
 
 export default function Services() {
-  const [selected, setSelected] = useState<(typeof services)[0] | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+  const services = useMemo(() => SERVICES, []);
+
+  const selected = selectedIndex !== null ? services[selectedIndex] : null;
+
+  // preload heavy modal content (future-proofing)
+  useEffect(() => {
+    if (!selected) return;
+    // сюда можно добавить preload изображений если появятся
+  }, [selected]);
 
   return (
     <section
@@ -56,15 +66,14 @@ export default function Services() {
       className="py-16 sm:py-20 bg-gradient-to-br from-blue-50 to-cyan-50 border-y-4 border-blue-500"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-
-        {/* HEADER */}
         <div className="mb-10 sm:mb-12">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-mono tracking-tight mb-3 sm:mb-4">
             <span className="gradient-text">Основные услуги</span>
           </h2>
 
           <p className="text-base sm:text-lg text-gray-600 max-w-2xl">
-            Выполняем полный цикл строительных и отделочных работ — от фундамента до сдачи объекта под ключ.
+            Выполняем полный цикл строительных и отделочных работ — от
+            фундамента до сдачи объекта под ключ.
           </p>
         </div>
 
@@ -72,14 +81,15 @@ export default function Services() {
         <div className="grid md:grid-cols-3 gap-4 sm:gap-6">
           {services.map((item, i) => (
             <div
-              key={i}
-              onClick={() => setSelected(item)}
-              className="bg-white border-3 border-blue-500 rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm hover:shadow-lg hover:translate-y-[-8px] transition cursor-pointer relative overflow-hidden group"
+              key={item.title}
+              onClick={() => setSelectedIndex(i)}
+              className="bg-white border-3 border-blue-500 rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm hover:shadow-lg hover:translate-y-[-8px] transition cursor-pointer relative overflow-hidden group will-change-transform"
             >
-              {/* hover glow */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-cyan-50 opacity-0 group-hover:opacity-100 transition -z-10" />
 
-              <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">{item.icon}</div>
+              <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">
+                {item.icon}
+              </div>
 
               <h3 className="text-base sm:text-lg font-bold text-gray-900">
                 {item.title}
@@ -97,14 +107,16 @@ export default function Services() {
         {/* POPUP */}
         {selected && (
           <div
-            onClick={() => setSelected(null)}
+            onClick={() => setSelectedIndex(null)}
             className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4"
           >
             <div
               onClick={(e) => e.stopPropagation()}
               className="bg-white max-w-xl w-full rounded-lg sm:rounded-xl shadow-2xl p-4 sm:p-6 max-h-[90vh] overflow-y-auto"
             >
-              <div className="text-3xl sm:text-4xl mb-2 sm:mb-3">{selected.icon}</div>
+              <div className="text-3xl sm:text-4xl mb-2 sm:mb-3">
+                {selected.icon}
+              </div>
 
               <h3 className="text-xl sm:text-2xl font-bold mb-2">
                 {selected.title}
@@ -119,7 +131,7 @@ export default function Services() {
               </p>
 
               <button
-                onClick={() => setSelected(null)}
+                onClick={() => setSelectedIndex(null)}
                 className="mt-4 sm:mt-6 bg-blue-600 text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg hover:bg-blue-700 transition text-sm sm:text-base w-full sm:w-auto"
               >
                 Закрыть
@@ -127,7 +139,6 @@ export default function Services() {
             </div>
           </div>
         )}
-
       </div>
     </section>
   );

@@ -4,7 +4,11 @@ import { Inter } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const inter = Inter({ subsets: ["latin", "cyrillic"] });
+const inter = Inter({
+  subsets: ["latin", "cyrillic"],
+  display: "swap",
+  preload: true,
+});
 
 export const metadata: Metadata = {
   title: "Строительство домов под ключ | StroiGroup",
@@ -26,7 +30,7 @@ export const metadata: Metadata = {
     locale: "ru_RU",
   },
   icons: {
-    icon: '/favicon.ico',
+    icon: "/favicon.ico",
   },
 };
 
@@ -38,10 +42,16 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body className={inter.className}>
-        <div className="blueprint-grid" />
+        {/* low-priority background layer */}
+        <div className="blueprint-grid" aria-hidden="true" />
+
+        {/* header stays, but better rendering stability */}
         <Header />
+
+        {/* main content */}
         <main className="relative z-10">{children}</main>
-		<Footer />
+
+        <Footer />
       </body>
     </html>
   );

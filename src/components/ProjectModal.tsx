@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+
 export default function ProjectModal({
   open,
   onClose,
@@ -9,6 +11,13 @@ export default function ProjectModal({
   onClose: () => void;
   project: any;
 }) {
+  // preload image (сильно снижает лаг при открытии)
+  useEffect(() => {
+    if (!open || !project?.image) return;
+    const img = new Image();
+    img.src = project.image;
+  }, [open, project]);
+
   if (!open || !project) return null;
 
   return (
@@ -24,6 +33,8 @@ export default function ProjectModal({
         <img
           src={project.image}
           alt={project.title}
+          loading="eager"
+          decoding="async"
           className="w-full h-64 object-cover"
         />
 

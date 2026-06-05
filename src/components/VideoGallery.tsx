@@ -24,11 +24,14 @@ export default function VideoGallery() {
             onClick={() => setActive(src)}
             className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 hover:border-cyan-400/40 transition"
           >
+            {/* thumbnail-like video (no preload pressure) */}
             <video
               src={src}
               className="w-full h-56 object-cover opacity-80 group-hover:opacity-100 transition"
               muted
               playsInline
+              preload="metadata"
+              poster=""
             />
 
             <div className="absolute inset-0 flex items-center justify-center">
@@ -40,25 +43,40 @@ export default function VideoGallery() {
         ))}
       </div>
 
-      {/* MODAL PLAYER */}
+      {/* MODAL PLAYER (lazy mounted video) */}
       {active && (
-        <div
-          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
-          onClick={() => setActive(null)}
-        >
-          <div
-            className="w-full max-w-4xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <video
-              src={active}
-              controls
-              autoPlay
-              className="w-full rounded-xl border border-white/10"
-            />
-          </div>
-        </div>
+        <VideoModal src={active} onClose={() => setActive(null)} />
       )}
     </>
+  );
+}
+
+/* вынесено — чтобы НЕ держать видео в DOM постоянно */
+function VideoModal({
+  src,
+  onClose,
+}: {
+  src: string;
+  onClose: () => void;
+}) {
+  return (
+    <div
+      className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+      onClick={onClose}
+    >
+      <div
+        className="w-full max-w-4xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <video
+          src={src}
+          controls
+          autoPlay
+          playsInline
+          preload="none"
+          className="w-full rounded-xl border border-white/10"
+        />
+      </div>
+    </div>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const reviews = [
   {
@@ -28,22 +28,21 @@ const reviews = [
 ];
 
 function Stars() {
-  return (
-    <div className="flex gap-0.5 text-yellow-400 text-sm">
-      {"★★★★★"}
-    </div>
-  );
+  return <div className="text-yellow-400 text-sm">★★★★★</div>;
 }
 
 export default function Reviews() {
   const [index, setIndex] = useState(0);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    const t = setInterval(() => {
+    intervalRef.current = setInterval(() => {
       setIndex((prev) => (prev + 1) % reviews.length);
     }, 5000);
 
-    return () => clearInterval(t);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
   }, []);
 
   const prev = () =>
@@ -63,32 +62,34 @@ export default function Reviews() {
         {/* КАРУСЕЛЬ */}
         <div className="relative bg-zinc-50 border border-zinc-200 rounded-lg sm:rounded-2xl p-4 sm:p-8 shadow-sm overflow-hidden">
 
-          {reviews.map((r, i) => (
-            <div
-              key={r.name}
-              className={`transition-all duration-700 min-h-[200px] ${
-                i === index
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 absolute inset-0 translate-x-10"
-              }`}
-            >
-              <div className="flex flex-col gap-3 sm:gap-4">
+          {reviews.map((r, i) => {
+            const isActive = i === index;
 
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-4">
-                  <div>
-                    <div className="font-semibold text-base sm:text-lg">{r.name}</div>
-                    <div className="text-xs sm:text-sm text-zinc-500">{r.date}</div>
+            return (
+              <div
+                key={r.name}
+                className={`min-h-[200px] transition-opacity duration-500 ${
+                  isActive ? "opacity-100" : "opacity-0 absolute inset-0 pointer-events-none"
+                }`}
+              >
+                <div className="flex flex-col gap-3 sm:gap-4">
+
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-4">
+                    <div>
+                      <div className="font-semibold text-base sm:text-lg">{r.name}</div>
+                      <div className="text-xs sm:text-sm text-zinc-500">{r.date}</div>
+                    </div>
+
+                    <Stars />
                   </div>
 
-                  <Stars />
+                  <p className="text-zinc-700 leading-relaxed text-sm sm:text-base">
+                    {r.text}
+                  </p>
                 </div>
-
-                <p className="text-zinc-700 leading-relaxed text-sm sm:text-base">
-                  {r.text}
-                </p>
               </div>
-            </div>
-          ))}
+            );
+          })}
 
           {/* КНОПКИ */}
           <button
@@ -118,6 +119,7 @@ export default function Reviews() {
             />
           ))}
         </div>
+
       </div>
     </section>
   );

@@ -11,35 +11,44 @@ type Project = {
 
 const projects: Project[] = [
   {
-    "title": "Строительство двухэтажного коттеджа из газобетона с облицовкой кирпичом",
-    "location": "Ярославская область, КП «Земля у леса»",
-    "image": "images/house1.jpg",
-    "description": "Капитальный загородный дом для постоянного проживания. Стены возведены из теплого газобетона и облицованы светлым керамическим кирпичом в европейском стиле. Обустроена сложная скатная кровля из металлочерепицы и встроенный теплый гараж с подъемными воротами. Сдали объект в чистовой наружной отделке под ключ."
+    title:
+      "Строительство двухэтажного коттеджа из газобетона с облицовкой кирпичом",
+    location: "Ярославская область, КП «Земля у леса»",
+    image: "/images/house1.jpg",
+    description:
+      "Капитальный загородный дом для постоянного проживания. Стены возведены из теплого газобетона и облицованы светлым керамическим кирпичом...",
   },
   {
-    "title": "Возведение фронтонов и комбинированная облицовка фасада кирпичом",
-    "location": "Ивановская область, пос. Загородный",
-    "image": "images/building.jpg",
-    "description": "Процесс строительства коробки дома из поризованных блоков. На фото — этап филигранной кладки фронтона мансардного этажа. Используем двухцветный лицевой кирпич: соломенный оттенок для основного массива стен и контрастный шоколадный для выделения углов и оконных проемов. Строго контролируем геометрию углов и ровность швов."
+    title: "Возведение фронтонов и комбинированная облицовка фасада кирпичом",
+    location: "Ивановская область, пос. Загородный",
+    image: "/images/building.jpg",
+    description:
+      "Процесс строительства коробки дома из поризованных блоков...",
   },
   {
-    "title": "Строительство загородного гостевого комплекса из профилированного бруса",
-    "location": "г. Ярославль, эко-парк",
-    "image": "images/house4.jpg",
-    "description": "Масштабный проект коммерческой недвижимости в традиционном русском стиле. Двухэтажный отель из сруба с открытой террасой на первом этаже и балконом на втором. Провели полный комплекс работ: от заливки фундамента и сборки венцов до финишной шлифовки, обработки антисептиками и контрастной покраски наличников."
+    title:
+      "Строительство загородного гостевого комплекса из профилированного бруса",
+    location: "г. Ярославль, эко-парк",
+    image: "/images/house4.jpg",
+    description:
+      "Масштабный проект коммерческой недвижимости в традиционном русском стиле...",
   },
   {
-    "title": "Строительство энергоэффективного одноэтажного дома (Баварская кладка)",
-    "location": "Московская область, д. Подушкино",
-    "image": "images/house7.jpg",
-    "description": "Современный одноэтажный дом из блоков с премиальной облицовкой клинкерным кирпичом с эффектом меланжа. Смонтирована четырехскатная вальмовая крыша из мягкой битумной черепицы (цвет графит), установлена водосточная система. Проемы полностью подготовлены к монтажу панорамного остекления. На участке организован вывоз мусора."
+    title:
+      "Строительство энергоэффективного одноэтажного дома (Баварская кладка)",
+    location: "Московская область, д. Подушкино",
+    image: "/images/house7.jpg",
+    description:
+      "Современный одноэтажный дом из блоков с премиальной облицовкой...",
   },
   {
-    "title": "Комплексный ремонт и чистовая отделка кухни-гостиной в стиле лофт-минимализм",
-    "location": "г. Кострома, ул. Лесная",
-    "image": "images/kitchens.jpg",
-    "description": "Внутренние отделочные работы под ключ. Выполнили выравнивание стен, монтаж натяжного потолка, зонированное многоуровневое освещение (треки + подвесы) и укладку керамогранита. Изготовили и смонтировали полубарную стойку. Стены покрыты премиальной моющейся краской глубокого сложного оттенка."
-  }
+    title:
+      "Комплексный ремонт и чистовая отделка кухни-гостиной в стиле лофт-минимализм",
+    location: "г. Кострома, ул. Лесная",
+    image: "/images/kitchens.jpg",
+    description:
+      "Внутренние отделочные работы под ключ...",
+  },
 ];
 
 export default function Portfolio() {
@@ -54,17 +63,24 @@ export default function Portfolio() {
     return () => window.removeEventListener("keydown", handler);
   }, []);
 
+  // preload image only when opening modal
+  useEffect(() => {
+    if (!selected) return;
+    const img = new Image();
+    img.src = selected.image;
+  }, [selected]);
+
   return (
     <section id="portfolio" className="py-16 sm:py-20 bg-white relative z-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-
         <div className="mb-10 sm:mb-12">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-mono tracking-tight mb-3 sm:mb-4">
             <span className="gradient-text">Портфолио работ</span>
           </h2>
 
           <p className="text-base sm:text-lg text-gray-600 max-w-2xl">
-            Реальные объекты строительства и ремонта, выполненные нашей бригадой. 
+            Реальные объекты строительства и ремонта, выполненные нашей
+            бригадой.
           </p>
         </div>
 
@@ -72,20 +88,27 @@ export default function Portfolio() {
         <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
           {projects.map((item, i) => (
             <div
-              key={i}
+              key={`${item.image}-${i}`}
               onClick={() => setSelected(item)}
               className="group relative cursor-pointer overflow-hidden rounded-lg sm:rounded-xl border-2 border-blue-500 shadow-sm hover:shadow-lg transition"
             >
               <img
                 src={item.image}
                 alt={item.title}
+                loading="lazy"
+                decoding="async"
                 className="h-48 sm:h-72 w-full object-cover group-hover:scale-110 transition duration-700"
               />
 
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-3 sm:p-6 text-white">
-                <h3 className="text-lg sm:text-2xl font-bold leading-tight">{item.title}</h3>
+                <h3 className="text-lg sm:text-2xl font-bold leading-tight">
+                  {item.title}
+                </h3>
+
                 {item.location && (
-                  <p className="text-xs sm:text-sm text-gray-300 mt-1">{item.location}</p>
+                  <p className="text-xs sm:text-sm text-gray-300 mt-1">
+                    {item.location}
+                  </p>
                 )}
               </div>
 
@@ -94,10 +117,12 @@ export default function Portfolio() {
           ))}
         </div>
 
-		<h4 className="text-base sm:text-lg text-gray-600 max-w-2xl">
-		Стоимость разработки проекта от 1000 до 10000 рублей в зависимости от сложности. Свяжитесь с нами для консультации и расчёта стоимости вашего проекта.
-		</h4>
-		
+        <h4 className="text-base sm:text-lg text-gray-600 max-w-2xl">
+          Стоимость разработки проекта от 1000 до 10000 рублей в зависимости от
+          сложности. Свяжитесь с нами для консультации и расчёта стоимости
+          вашего проекта.
+        </h4>
+
         {/* POPUP */}
         {selected && (
           <div
@@ -111,6 +136,8 @@ export default function Portfolio() {
               <img
                 src={selected.image}
                 alt={selected.title}
+                decoding="async"
+                loading="eager"
                 className="w-full h-48 sm:h-80 object-cover"
               />
 
@@ -139,7 +166,6 @@ export default function Portfolio() {
             </div>
           </div>
         )}
-
       </div>
     </section>
   );
