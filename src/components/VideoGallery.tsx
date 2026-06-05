@@ -6,7 +6,6 @@ const videos = [
   "/videos/site1.mp4",
   "/videos/site2.mp4",
   "/videos/site3.mp4",
-  "/videos/site4.mp4",
 ];
 
 export default function VideoGallery() {
@@ -14,7 +13,7 @@ export default function VideoGallery() {
 
   return (
     <>
-      {/* GRID */}
+      {/* GRID — НИКАКОГО PRELOAD ВИДЕО */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {videos.map((src) => (
           <button
@@ -22,14 +21,14 @@ export default function VideoGallery() {
             onClick={() => setActive(src)}
             className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 hover:border-cyan-400/40 transition"
           >
-            {/* thumbnail-like video (no preload pressure) */}
+            {/* thumbnail from first frame */}
             <video
               src={src}
               className="w-full h-56 object-cover opacity-80 group-hover:opacity-100 transition"
               muted
               playsInline
               preload="metadata"
-              poster=""
+              poster={`${src}#t=0.1`}
             />
 
             <div className="absolute inset-0 flex items-center justify-center">
@@ -41,15 +40,12 @@ export default function VideoGallery() {
         ))}
       </div>
 
-      {/* MODAL PLAYER (lazy mounted video) */}
-      {active && (
-        <VideoModal src={active} onClose={() => setActive(null)} />
-      )}
+      {/* MODAL */}
+      {active && <VideoModal src={active} onClose={() => setActive(null)} />}
     </>
   );
 }
 
-/* вынесено — чтобы НЕ держать видео в DOM постоянно */
 function VideoModal({
   src,
   onClose,
@@ -62,10 +58,7 @@ function VideoModal({
       className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
       onClick={onClose}
     >
-      <div
-        className="w-full max-w-4xl"
-        onClick={(e) => e.stopPropagation()}
-      >
+      <div className="w-full max-w-4xl" onClick={(e) => e.stopPropagation()}>
         <video
           src={src}
           controls

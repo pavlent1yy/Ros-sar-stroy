@@ -11,6 +11,7 @@ const images = [
 
 export default function Hero() {
   const [index, setIndex] = useState(0);
+  const [loadedImages, setLoadedImages] = useState([images[0]]);
 
   useEffect(() => {
     const interval = window.setInterval(() => {
@@ -20,6 +21,19 @@ export default function Hero() {
     return () => window.clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const preloadTimer = window.setTimeout(() => {
+      images.slice(1).forEach((src) => {
+        const img = new Image();
+        img.src = src;
+      });
+
+      setLoadedImages(images);
+    }, 2000);
+
+    return () => clearTimeout(preloadTimer);
+  }, []);
+
   return (
     <section
       className="relative min-h-[90vh] md:h-[90vh] flex items-center pt-20 md:pt-16 pb-10 md:pb-0 overflow-hidden"
@@ -27,7 +41,7 @@ export default function Hero() {
     >
       {/* BACKGROUND SLIDER */}
       <div className="absolute inset-0">
-        {images.map((img, i) => (
+        {loadedImages.map((img, i) => (
           <img
             key={`${img}-${i}`}
             src={img}
@@ -53,7 +67,9 @@ export default function Hero() {
         </h1>
 
         <p className="mt-4 md:mb-8 sm:mt-6 text-gray-200 max-w-2xl text-sm sm:text-base md:text-lg leading-relaxed font-light">
-          Более 10 лет опыта и 8000 проектов. Строим частные дома, коттеджи, коммерческие и промышленные объекты в Ярославле, Москве, Санкт-Петербурге и регионах России.
+          Более 10 лет опыта и 8000 проектов. Строим частные дома, коттеджи,
+          коммерческие и промышленные объекты в Ярославле, Москве,
+          Санкт-Петербурге и регионах России.
         </p>
 
         <a
@@ -78,7 +94,6 @@ export default function Hero() {
           </div>
         </a>
 
-        {/* CTA */}
         <div className="mt-8 sm:mt-10 flex gap-3 sm:gap-4 flex-col sm:flex-row w-full sm:w-auto">
           <a
             href="#portfolio"
@@ -95,7 +110,6 @@ export default function Hero() {
           </a>
         </div>
 
-        {/* TRUST */}
         <div className="mt-10 sm:mt-12 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 text-xs sm:text-sm text-gray-200 font-medium">
           {[
             "10+ лет опыта",
@@ -110,11 +124,12 @@ export default function Hero() {
           ))}
         </div>
 
-        {/* small note */}
         <div className="mt-4 sm:mt-6 text-xs text-gray-300 max-w-2xl leading-relaxed">
           Строим частные дома, коттеджи, коммерческие и промышленные здания.
           Работа по этапам без авансов — оплата по факту выполненных работ.
-          Разработка проекта осуществляется в том числе индивидуально по вашему техническому заданию. Свяжитесь с нами для консультации и расчёта стоимости вашего проекта.
+          Разработка проекта осуществляется в том числе индивидуально по вашему
+          техническому заданию. Свяжитесь с нами для консультации и расчёта
+          стоимости вашего проекта.
         </div>
       </div>
     </section>
