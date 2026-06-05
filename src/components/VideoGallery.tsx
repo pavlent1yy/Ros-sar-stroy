@@ -7,8 +7,6 @@ const videos = [
   "/videos/site2.mp4",
   "/videos/site3.mp4",
   "/videos/site4.mp4",
-  "/videos/site5.mp4",
-  "/videos/site6.mp4",
 ];
 
 export default function VideoGallery() {

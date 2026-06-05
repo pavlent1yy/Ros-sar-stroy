@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 
 const images = [
-  "/images/house1.jpg",
-  "/images/house2.jpg",
-  "/images/house4.jpg",
-  "/images/house5.jpg",
+  "/images/house1.webp",
+  "/images/house2.webp",
+  "/images/house4.webp",
+  "/images/house5.webp",
 ];
 
 export default function Hero() {
