@@ -182,16 +182,86 @@ export default function RealEstatePage() {
                     </span>
                   </div>
 
+					{/* PRICE */}
+					<div className="grid sm:grid-cols-2 gap-4">
+
+					<div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-xl p-5">
+						<div className="text-sm uppercase opacity-80">
+						Стоимость объекта
+						</div>
+
+						<div className="text-3xl sm:text-4xl font-bold mt-1">
+						11 000 000 ₽
+						</div>
+					</div>
+
+					<div className="bg-green-50 border-2 border-green-500 rounded-xl p-5">
+						<div className="text-sm uppercase text-green-700">
+						Доступна ипотека
+						</div>
+
+						<div className="text-3xl sm:text-4xl font-bold text-green-700 mt-1">
+						3%
+						</div>
+					</div>
+
+					</div>
+
                   <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
                     {selected.fullDescription}
                   </p>
 
-                  <button
-                    onClick={closeModal}
-                    className="mt-4 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
-                  >
-                    Закрыть
-                  </button>
+				  {/* INVESTMENTS */}
+					<div className="bg-amber-50 border-2 border-amber-400 rounded-xl p-5">
+
+					<h3 className="text-xl font-bold mb-3">
+						💰 Инвестиционный потенциал
+					</h3>
+
+					<div className="space-y text-gray-700">
+
+						<p>
+						Инвесторы, ранее приобретавшие аналогичные объекты,
+						осуществляли перепродажу готовых домов в диапазоне
+						<strong> от 20 до 36 млн ₽</strong>.
+						</p>
+
+						<p>
+						Также имеются готовые коттеджи,
+						подходящие для посуточной аренды.
+						Средняя доходность составляет
+						<strong> от 20 000 до 40 000 ₽ за сутки </strong>
+						 в зависимости от сезона и загруженности.
+						</p>
+
+						<p>
+						Объект может рассматриваться как для собственного проживания,
+						так и в качестве инвестиционного проекта с последующей
+						перепродажей или сдачей в аренду.
+						</p>
+
+					</div>
+
+					</div>
+
+                  <div className="flex flex-col sm:flex-row gap-3 pt-4">
+
+					<a
+						href="#contacts"
+						onClick={closeModal}
+						className="flex-1 text-center bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:translate-y-[-2px] transition"
+					>
+						📞 Записаться на просмотр
+					</a>
+
+					<button
+						onClick={closeModal}
+						className="px-8 py-4 rounded-xl border border-gray-300 hover:bg-gray-50 transition"
+					>
+						Закрыть
+					</button>
+
+					</div>
                 </div>
               </div>
             </div>
