@@ -13,6 +13,7 @@ export default function Header() {
       { href: "/#portfolio", label: "Портфолио" },
       { href: "/#contacts", label: "Контакты" },
       { href: "/videos", label: "Видео с объектов" },
+      { href: "/real-estate", label: "Готовые объекты" },
     ],
     []
   );

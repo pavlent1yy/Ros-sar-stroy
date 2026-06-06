@@ -11,7 +11,8 @@ export default function Contacts() {
           </h2>
 
           <p className="text-base sm:text-lg text-gray-600 max-w-2xl">
-            Свяжитесь с нами для расчёта стоимости и консультации по вашему и нашему проекту.
+            Свяжитесь с нами для расчёта стоимости и консультации по вашему и нашему проекту. 
+			Если есть вопросы - звоните в любое удобное для вас время! 
           </p>
         </div>
 
@@ -42,8 +43,14 @@ export default function Contacts() {
             </div>
 
             <div className="border-l-4 border-blue-500 pl-4 sm:pl-6">
-              <p className="font-bold text-gray-900 mb-1 text-sm sm:text-base">🕐 График работы</p>
-              <p className="text-gray-600 text-sm sm:text-base">Пн–Вс: 08:00–23:00</p>
+              <p className="font-bold text-gray-900 mb-1 text-sm sm:text-base">🕐 График работы (Можно звонить/писать)</p>
+              <p className="text-gray-600 text-sm sm:text-base">Пн–Вс: 07:00– 02:00</p>
+            </div>
+
+			<div className="border-l-4 border-cyan-500 pl-4 sm:pl-6">
+			  <p className="font-bold text-gray-900 mb-1 text-sm sm:text-base">🏢 Показ объектов</p>
+              <p className="text-gray-600 text-sm sm:text-base">Пн–Вс: 07:00–12:00</p>
+			  <p className="text-gray-600 text-sm sm:text-base">Контрольный звонок за час до встречи</p>
             </div>
 
             <div className="border-l-4 border-blue-500 pl-4 sm:pl-6">

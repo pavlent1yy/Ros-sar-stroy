@@ -31,17 +31,17 @@ export default function Footer() {
 
             <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-gray-600">
               <li>
-                <a href="#services" className="hover:text-blue-600 transition">
+                <a href="/#services" className="hover:text-blue-600 transition">
                   Услуги
                 </a>
               </li>
               <li>
-                <a href="#portfolio" className="hover:text-blue-600 transition">
+                <a href="/#portfolio" className="hover:text-blue-600 transition">
                   Портфолио
                 </a>
               </li>
               <li>
-                <a href="#contacts" className="hover:text-blue-600 transition">
+                <a href="/#contacts" className="hover:text-blue-600 transition">
                   Контакты
                 </a>
               </li>
