@@ -10,8 +10,7 @@ export default function Header() {
     () => [
       { href: "/#construction", label: "Строительство и ремонт" },
       { href: "/#services", label: "Услуги" },
-      { href: "/#portfolio", label: "Портфолио" },
-      { href: "/#contacts", label: "Контакты" },
+      { href: "/portfolio", label: "Портфолио" },
       { href: "/videos", label: "Видео с объектов" },
       { href: "/real-estate", label: "Готовые объекты" },
     ],

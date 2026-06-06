@@ -138,7 +138,11 @@ export default function Portfolio() {
             </div>
           ))}
         </div>
-
+		
+		  <a href="/portfolio" className="inline-block bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition mt-6">
+            Больше работ
+          </a>
+		
         <h4 className="text-base sm:text-lg text-gray-600 max-w-2xl mt-6">
           Стоимость разработки проекта от 1000 до 10000 рублей в зависимости от
           сложности. Свяжитесь с нами для консультации.

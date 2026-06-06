@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Contacts from "./Contacts";
 
 const videos = [
   "/videos/site1.mp4",
@@ -42,6 +43,7 @@ export default function VideoGallery() {
 
       {/* MODAL */}
       {active && <VideoModal src={active} onClose={() => setActive(null)} />}
+	<Contacts />
     </>
   );
 }
