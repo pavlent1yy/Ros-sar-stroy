@@ -54,18 +54,33 @@ export default function Services() {
 
   const selected = selectedIndex !== null ? services[selectedIndex] : null;
 
-  // preload heavy modal content (future-proofing)
+  const closeModal = () => {
+		setSelectedIndex(null);
+	};
+
+	useEffect(() => {
+	if (selected) {
+		document.body.style.overflow = "hidden";
+	} else {
+		document.body.style.overflow = "";
+	}
+
+	return () => {
+		document.body.style.overflow = "";
+	};
+	}, [selected]);
+
+
   useEffect(() => {
     if (!selected) return;
-    // сюда можно добавить preload изображений если появятся
-  }, [selected]);
+    }, [selected]);
 
   return (
     <section
       id="services"
       className="py-16 sm:py-20 bg-gradient-to-br from-blue-50 to-cyan-50 border-y-4 border-blue-500"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative">
         <div className="mb-10 sm:mb-12">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-mono tracking-tight mb-3 sm:mb-4">
             <span className="gradient-text">Основные услуги</span>
@@ -85,7 +100,7 @@ export default function Services() {
               onClick={() => setSelectedIndex(i)}
               className="bg-white border-3 border-blue-500 rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm hover:shadow-lg hover:translate-y-[-8px] transition cursor-pointer relative overflow-hidden group will-change-transform"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-cyan-50 opacity-0 group-hover:opacity-100 transition -z-10" />
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-cyan-50 opacity-0 group-hover:opacity-100 transition" />
 
               <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">
                 {item.icon}
@@ -104,41 +119,49 @@ export default function Services() {
           ))}
         </div>
 
-        {/* POPUP */}
-        {selected && (
-          <div
-            onClick={() => setSelectedIndex(null)}
-            className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4"
-          >
-            <div
-              onClick={(e) => e.stopPropagation()}
-              className="bg-white max-w-xl w-full rounded-lg sm:rounded-xl shadow-2xl p-4 sm:p-6 max-h-[90vh] overflow-y-auto"
-            >
-              <div className="text-3xl sm:text-4xl mb-2 sm:mb-3">
-                {selected.icon}
-              </div>
+		{/* POPUP */}
+		{selected && (
+		<div
+			onClick={closeModal}
+			className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+		>
+			<div
+			onClick={(e) => e.stopPropagation()}
+			className="relative bg-white max-w-xl w-full rounded-lg sm:rounded-xl shadow-2xl p-4 sm:p-6 max-h-[90vh] overflow-y-auto"
+			>
+			{/* CLOSE */}
+			<button
+				onClick={closeModal}
+				className="absolute top-4 right-4 bg-white shadow-lg rounded-full w-10 h-10 hover:scale-105 transition z-20"
+			>
+				✕
+			</button>
 
-              <h3 className="text-xl sm:text-2xl font-bold mb-2">
-                {selected.title}
-              </h3>
+			<div className="text-3xl sm:text-4xl mb-2 sm:mb-3">
+				{selected.icon}
+			</div>
 
-              <p className="text-gray-500 text-sm sm:text-base mb-4">
-                {selected.desc}
-              </p>
+			<h3 className="text-xl sm:text-2xl font-bold mb-2">
+				{selected.title}
+			</h3>
 
-              <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-                {selected.fullDesc}
-              </p>
+			<p className="text-gray-500 text-sm sm:text-base mb-4">
+				{selected.desc}
+			</p>
 
-              <button
-                onClick={() => setSelectedIndex(null)}
-                className="mt-4 sm:mt-6 bg-blue-600 text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg hover:bg-blue-700 transition text-sm sm:text-base w-full sm:w-auto"
-              >
-                Закрыть
-              </button>
-            </div>
-          </div>
-        )}
+			<p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+				{selected.fullDesc}
+			</p>
+
+			<button
+				onClick={closeModal}
+				className="mt-4 sm:mt-6 bg-blue-600 text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg hover:bg-blue-700 transition text-sm sm:text-base w-full sm:w-auto"
+			>
+				Закрыть
+			</button>
+			</div>
+		</div>
+		)}
       </div>
     </section>
   );

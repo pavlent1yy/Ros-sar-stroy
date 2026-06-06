@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-white border-t-4 border-blue-500 relative z-10">
+    <footer className="bg-white border-t-4 border-blue-500 relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-14">
 
         <div className="grid sm:grid-cols-3 gap-6 sm:gap-10">
@@ -57,7 +57,7 @@ export default function Footer() {
             <div className="text-xs sm:text-sm text-gray-600 space-y-1.5 sm:space-y-2">
               <p>📍 Работаем: Москва и регионы РФ</p>
               <p>📞 Телефон: +7 (906) 634-26-64</p>
-              <p>✉️ Email: info@stroigroup.ru</p>
+              <p>✉️ Email: rossarstroy@gmail.com</p>
             </div>
           </div>
 

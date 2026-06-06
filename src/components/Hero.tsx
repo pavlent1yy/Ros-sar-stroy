@@ -61,7 +61,7 @@ export default function Hero() {
       </div>
 
       {/* CONTENT */}
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 text-white z-10 w-full">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 text-white w-full">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight font-mono tracking-tight max-w-3xl">
           Строительство домов и ремонт под ключ
         </h1>

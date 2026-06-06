@@ -35,7 +35,7 @@ const reasons = [
 
 export default function WhyUs() {
   return (
-    <section className="py-16 sm:py-20 bg-gradient-to-br from-blue-50 via-white to-cyan-50 relative z-10 border-y-4 border-blue-500">
+    <section className="py-16 sm:py-20 bg-gradient-to-br from-blue-50 via-white to-cyan-50 relative border-y-4 border-blue-500">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="mb-10 sm:mb-12 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-mono tracking-tight mb-3 sm:mb-4">

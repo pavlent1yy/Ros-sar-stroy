@@ -2,7 +2,7 @@
 
 export default function Contacts() {
   return (
-    <section id="contacts" className="py-16 sm:py-20 bg-white relative z-10">
+    <section id="contacts" className="py-16 sm:py-20 bg-white relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
 
         <div className="mb-10 sm:mb-12">
@@ -56,7 +56,7 @@ export default function Contacts() {
             <div className="border-l-4 border-blue-500 pl-4 sm:pl-6">
               <p className="font-bold text-gray-900 mb-1 text-sm sm:text-base">📧 E-mail</p>
               <p className="text-gray-600 text-sm sm:text-base break-all">
-                artembrigadier1@gmail.com
+                rossarstroy@gmail.com
               </p>
             </div>
 

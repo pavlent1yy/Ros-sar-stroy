@@ -43,8 +43,26 @@ const projects: Project[] = [
 ];
 
 export default function Portfolio() {
-  const [selected, setSelected] = useState<Project | null>(null);
-  const [visible, setVisible] = useState<Set<number>>(new Set());
+	const [selected, setSelected] = useState<Project | null>(null);
+	const [visible, setVisible] = useState<Set<number>>(new Set());
+
+	const closeModal = () => {
+		setSelected(null);
+	};
+
+	useEffect(() => {
+		if (selected) {
+			document.body.style.overflow = "hidden";
+		} else {
+			document.body.style.overflow = "";
+		}
+
+		return () => {
+			document.body.style.overflow = "";
+		};
+		}, [selected]);
+
+  
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -72,7 +90,7 @@ export default function Portfolio() {
   }, []);
 
   return (
-    <section id="portfolio" className="py-16 sm:py-20 bg-white relative z-10">
+    <section id="portfolio" className="py-16 sm:py-20 bg-white relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
 
         <div className="mb-10 sm:mb-12">
@@ -126,43 +144,57 @@ export default function Portfolio() {
           сложности. Свяжитесь с нами для консультации.
         </h4>
 
-        {/* MODAL */}
-        {selected && (
-          <div
-            onClick={() => setSelected(null)}
-            className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4"
-          >
-            <div
-              onClick={(e) => e.stopPropagation()}
-              className="bg-white max-w-3xl w-full rounded-xl overflow-hidden shadow-2xl max-h-[90vh] overflow-y-auto"
-            >
-              <img
-                src={selected.image}
-                alt={selected.title}
-                decoding="async"
-                loading="eager"
-                className="w-full h-80 object-cover"
-              />
+       {/* MODAL */}
+{selected && (
+  <div
+    onClick={closeModal}
+    className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+  >
+    <div
+      onClick={(e) => e.stopPropagation()}
+      className="relative bg-white max-w-3xl w-full rounded-xl overflow-hidden shadow-2xl max-h-[90vh] overflow-y-auto"
+    >
+      {/* CLOSE BUTTON */}
+      <button
+        onClick={closeModal}
+        className="absolute top-4 right-4 bg-white shadow-lg rounded-full w-10 h-10 hover:scale-105 transition z-20"
+      >
+        ✕
+      </button>
 
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">
-                  {selected.title}
-                </h3>
+      <img
+        src={selected.image}
+        alt={selected.title}
+        decoding="async"
+        loading="eager"
+        className="w-full h-80 object-cover"
+      />
 
-                <p className="text-gray-600 text-sm mb-4">
-                  {selected.description}
-                </p>
+      <div className="p-6">
+        <h3 className="text-xl font-bold mb-2">
+          {selected.title}
+        </h3>
 
-                <button
-                  onClick={() => setSelected(null)}
-                  className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition"
-                >
-                  Закрыть
-                </button>
-              </div>
-            </div>
-          </div>
+        {selected.location && (
+          <p className="text-sm text-gray-500 mb-3">
+            📍 {selected.location}
+          </p>
         )}
+
+        <p className="text-gray-600 text-sm mb-4">
+          {selected.description}
+        </p>
+
+        <button
+          onClick={closeModal}
+          className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition"
+        >
+          Закрыть
+        </button>
+      </div>
+    </div>
+  </div>
+)}
 
       </div>
     </section>

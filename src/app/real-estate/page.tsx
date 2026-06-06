@@ -56,7 +56,7 @@ export default function RealEstatePage() {
       <main className="relative min-h-screen overflow-hidden">
         <div className="blueprint-grid" />
 
-        <section className="relative z-10 pt-28 pb-20">
+        <section className="relative pt-28 pb-20">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
 
             {/* HEADER */}

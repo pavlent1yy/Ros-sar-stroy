@@ -12,7 +12,7 @@ export default function VideosPage() {
       {/* убрал radial-gradient — он дорогой на мобилках */}
 
       {/* CONTENT */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
 
         <h1 className="text-3xl sm:text-5xl font-bold gradient-text">
           Видео с объектов
