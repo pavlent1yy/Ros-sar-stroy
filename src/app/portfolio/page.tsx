@@ -3,60 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import Contacts from "@/components/Contacts";
-
-type Project = {
-  id: number;
-  category: string;
-  title: string;
-  location?: string;
-  preview: string;
-  images: string[];
-  shortDescription: string;
-  fullDescription: string;
-};
-
-const PROJECTS: Project[] = [
-  {
-    id: 1,
-    category: "Строительство домов",
-    title:
-      "Строительство двухэтажного коттеджа из газобетона с облицовкой кирпичом",
-    location: "Ярославская область, КП «Земля у леса»",
-    preview: "/images/house1.webp",
-    images: [
-      "/images/house1.webp",
-      "/images/house1.1.webp",
-    ],
-    shortDescription: "Капитальный загородный дом с полным циклом работ.",
-    fullDescription:
-      "Выполнено строительство двухэтажного дома из газобетона с облицовкой кирпичом. Реализованы фундамент, коробка, кровля, инженерные сети и подготовка под отделку. Объект выполнен под ключ с контролем всех этапов работ.",
-  },
-  {
-    id: 2,
-    category: "Фасадные работы",
-    title: "Комбинированная облицовка фасада кирпичом",
-    location: "Ивановская область, пос. Загородный",
-    preview: "/images/house2.webp",
-    images: [
-      "/images/building.webp",
-      "/images/house2.webp",
-    ],
-    shortDescription: "Фасадные работы с комбинированной отделкой.",
-    fullDescription:
-      "Выполнена облицовка фасада кирпичом с элементами декоративной кладки. Проведены подготовительные работы, утепление и монтаж фасадной системы.",
-  },
-  {
-    id: 3,
-    category: "Деревянные дома",
-    title: "Гостевой комплекс из бруса",
-    location: "г. Ярославль, эко-парк",
-    preview: "/images/house4.webp",
-    images: ["/images/house4.webp", "/images/house4.1.webp"],
-    shortDescription: "Комплекс из бруса для отдыха и аренды.",
-    fullDescription:
-      "Построен гостевой комплекс из профилированного бруса. Выполнены фундамент, сборка сруба, кровля и базовая инженерия.",
-  },
-];
+import { PROJECTS } from "@/data/portfolio";
 
 export default function PortfolioPage() {
   const projects = useMemo(() => PROJECTS, []);
