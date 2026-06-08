@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import Contacts from "@/components/Contacts";
 import { PROJECTS } from "@/data/portfolio";
+import { Project } from "@/types/portfolio";
 
 export default function PortfolioPage() {
   const projects = useMemo(() => PROJECTS, []);
