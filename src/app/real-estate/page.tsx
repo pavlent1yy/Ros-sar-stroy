@@ -1,50 +1,26 @@
 "use client";
 
 import { useEffect, useState } from "react";
+
 import Contacts from "@/components/Contacts";
 
-type ObjectItem = {
-  id: number;
-  status: "В продаже" | "Продан";
-  title: string;
-  shortDescription: string;
-  fullDescription: string;
-  images: string[];
-};
-
-const objects: ObjectItem[] = [
-  {
-    id: 1,
-    status: "В продаже",
-    title: "Коттедж из кирпича, 180 м²",
-    shortDescription:
-      "Современный двухэтажный кирпичный коттедж общей площадью 180 м².",
-    fullDescription:
-      "Современный коттедж 180 м². Построен в 2022 году. Участок 4 сотки с возможностью расширения. Свободная планировка позволяет адаптировать пространство под себя. Подключены все центральные коммуникации.",
-    images: [
-      "/images/sale/cottage-1/cottage1.webp",
-      "/images/sale/cottage-1/cottage2.webp",
-      "/images/sale/cottage-1/cottage3.webp",
-    ],
-  },
-];
+import { REAL_ESTATE_OBJECTS } from "@/data/realEstate";
+import type { RealEstateObject } from "@/types/realEstate";
 
 export default function RealEstatePage() {
-  const [selected, setSelected] = useState<ObjectItem | null>(null);
-  const [activeImage, setActiveImage] = useState<string | null>(null);
+  const [selected, setSelected] =
+    useState<RealEstateObject | null>(null);
+
+  const [activeImage, setActiveImage] =
+    useState<string | null>(null);
 
   const closeModal = () => {
     setSelected(null);
     setActiveImage(null);
   };
 
-  // Блокировка скролла фона
   useEffect(() => {
-    if (selected) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = selected ? "hidden" : "";
 
     return () => {
       document.body.style.overflow = "";
@@ -54,12 +30,9 @@ export default function RealEstatePage() {
   return (
     <>
       <main className="relative min-h-screen overflow-hidden">
-        <div className="blueprint-grid" />
-
         <section className="relative pt-28 pb-20">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
 
-            {/* HEADER */}
             <div className="mb-12">
               <h1 className="text-4xl sm:text-5xl font-bold font-mono">
                 <span className="gradient-text">
@@ -72,15 +45,13 @@ export default function RealEstatePage() {
               </p>
             </div>
 
-            {/* CARDS */}
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {objects.map((obj) => (
+              {REAL_ESTATE_OBJECTS.map((obj) => (
                 <div
                   key={obj.id}
                   onClick={() => setSelected(obj)}
-                  className="cursor-pointer bg-white rounded-xl border-2 border-blue-500 overflow-hidden hover:shadow-lg transition"
+                  className="cursor-pointer bg-white rounded-xl border-2 border-blue-500 overflow-hidden hover:shadow-xl transition"
                 >
-                  {/* ONLY PREVIEW IMAGE */}
                   <img
                     src={obj.images[0]}
                     alt={obj.title}
@@ -108,6 +79,10 @@ export default function RealEstatePage() {
                       {obj.shortDescription}
                     </p>
 
+                    <div className="mt-4 text-2xl font-bold text-blue-600">
+                      {obj.price}
+                    </div>
+
                     <p className="mt-3 text-blue-600 font-semibold text-sm">
                       Открыть →
                     </p>
@@ -118,28 +93,24 @@ export default function RealEstatePage() {
           </div>
         </section>
 
-        {/* MODAL */}
         {selected && (
           <div
             onClick={closeModal}
-            className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/70 z-[100] flex items-center justify-center p-4"
           >
             <div
               onClick={(e) => e.stopPropagation()}
-              className="bg-white w-full max-w-5xl rounded-2xl max-h-[90vh] overflow-hidden flex flex-col"
+              className="relative bg-white w-full max-w-5xl rounded-2xl max-h-[90vh] overflow-hidden"
             >
-              {/* CLOSE */}
               <button
                 onClick={closeModal}
-                className="absolute top-4 right-4 bg-white shadow rounded-full w-10 h-10 z-20"
+                className="absolute top-4 right-4 bg-white shadow-lg rounded-full w-10 h-10 z-20"
               >
                 ✕
               </button>
 
-              {/* SCROLL AREA */}
-              <div className="overflow-y-auto">
+              <div className="overflow-y-auto max-h-[90vh]">
 
-                {/* IMAGES GRID (adaptive) */}
                 <div
                   className={`grid gap-2 p-4 ${
                     selected.images.length === 1
@@ -163,10 +134,9 @@ export default function RealEstatePage() {
                   ))}
                 </div>
 
-                {/* CONTENT (compact) */}
-                <div className="p-6 sm:p-8 space-y-4">
+                <div className="p-6 sm:p-8 space-y-6">
 
-                  <div className="flex items-center justify-between">
+                  <div className="flex justify-between items-center gap-4">
                     <h2 className="text-2xl font-bold">
                       {selected.title}
                     </h2>
@@ -182,97 +152,149 @@ export default function RealEstatePage() {
                     </span>
                   </div>
 
-					{/* PRICE */}
-					<div className="grid sm:grid-cols-2 gap-4">
+                  <div className="grid sm:grid-cols-2 gap-4">
 
-					<div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-xl p-5">
-						<div className="text-sm uppercase opacity-80">
-						Стоимость объекта
-						</div>
+                    <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-xl p-5">
+                      <div className="text-sm uppercase opacity-80">
+                        Стоимость объекта
+                      </div>
 
-						<div className="text-3xl sm:text-4xl font-bold mt-1">
-						11 000 000 ₽
-						</div>
-					</div>
+                      <div className="text-3xl sm:text-4xl font-bold mt-1">
+                        {selected.price}
+                      </div>
+                    </div>
 
-					<div className="bg-green-50 border-2 border-green-500 rounded-xl p-5">
-						<div className="text-sm uppercase text-green-700">
-						Доступна ипотека
-						</div>
+                    {selected.mortgage?.enabled && (
+                      <div className="bg-green-50 border-2 border-green-500 rounded-xl p-5">
+                        <div className="text-sm uppercase text-green-700">
+                          Доступна ипотека
+                        </div>
 
-						<div className="text-3xl sm:text-4xl font-bold text-green-700 mt-1">
-						3%
-						</div>
-					</div>
+                        <div className="text-3xl sm:text-4xl font-bold text-green-700 mt-1">
+                          {selected.mortgage.rate}
+                        </div>
+                      </div>
+                    )}
+                  </div>
 
-					</div>
+                  {selected.characteristics && (
+                    <div className="grid sm:grid-cols-4 gap-3">
 
-                  <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+                      {selected.characteristics.area && (
+                        <div className="bg-gray-50 rounded-xl p-4">
+                          <div className="text-xs text-gray-500">
+                            Площадь
+                          </div>
+                          <div className="font-bold">
+                            {selected.characteristics.area}
+                          </div>
+                        </div>
+                      )}
+
+                      {selected.characteristics.plot && (
+                        <div className="bg-gray-50 rounded-xl p-4">
+                          <div className="text-xs text-gray-500">
+                            Участок
+                          </div>
+                          <div className="font-bold">
+                            {selected.characteristics.plot}
+                          </div>
+                        </div>
+                      )}
+
+                      {selected.characteristics.floors && (
+                        <div className="bg-gray-50 rounded-xl p-4">
+                          <div className="text-xs text-gray-500">
+                            Этажей
+                          </div>
+                          <div className="font-bold">
+                            {selected.characteristics.floors}
+                          </div>
+                        </div>
+                      )}
+
+                      {selected.characteristics.yearBuilt && (
+                        <div className="bg-gray-50 rounded-xl p-4">
+                          <div className="text-xs text-gray-500">
+                            Год
+                          </div>
+                          <div className="font-bold">
+                            {selected.characteristics.yearBuilt}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  <p className="text-gray-700 leading-relaxed">
                     {selected.fullDescription}
                   </p>
 
-				  {/* INVESTMENTS */}
-					<div className="bg-amber-50 border-2 border-amber-400 rounded-xl p-5">
+                  {selected.investment && (
+                    <div className="bg-amber-50 border-2 border-amber-400 rounded-xl p-5">
+                      <h3 className="text-xl font-bold mb-3">
+                        💰 Инвестиционный потенциал
+                      </h3>
 
-					<h3 className="text-xl font-bold mb-3">
-						💰 Инвестиционный потенциал
-					</h3>
+                      <div className="space-y-3 text-gray-700">
+                        {selected.investment.resalePrice && (
+                          <p>
+                            Перепродажа:
+                            <strong>
+                              {" "}
+                              {selected.investment.resalePrice}
+                            </strong>
+                          </p>
+                        )}
 
-					<div className="space-y text-gray-700">
+                        {selected.investment.rentIncome && (
+                          <p>
+                            Доход от аренды:
+                            <strong>
+                              {" "}
+                              {selected.investment.rentIncome}
+                            </strong>
+                          </p>
+                        )}
 
-						<p>
-						Инвесторы, ранее приобретавшие аналогичные объекты,
-						осуществляли перепродажу готовых домов в диапазоне
-						<strong> от 20 до 36 млн ₽</strong>.
-						</p>
+                        {selected.investment.description && (
+                          <p>
+                            {selected.investment.description}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  )}
 
-						<p>
-						Также имеются готовые коттеджи,
-						подходящие для посуточной аренды.
-						Средняя доходность составляет
-						<strong> от 20 000 до 40 000 ₽ за сутки </strong>
-						 в зависимости от сезона и загруженности.
-						</p>
+                  <div className="flex flex-col sm:flex-row gap-3">
 
-						<p>
-						Объект может рассматриваться как для собственного проживания,
-						так и в качестве инвестиционного проекта с последующей
-						перепродажей или сдачей в аренду.
-						</p>
+                    <a
+                      href="#contacts"
+                      onClick={closeModal}
+                      className="flex-1 text-center bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:translate-y-[-2px] transition"
+                    >
+                      {selected.contactButtonText ??
+                        "📞 Связаться"}
+                    </a>
 
-					</div>
+                    <button
+                      onClick={closeModal}
+                      className="px-8 py-4 rounded-xl border border-gray-300 hover:bg-gray-50 transition"
+                    >
+                      Закрыть
+                    </button>
 
-					</div>
-
-                  <div className="flex flex-col sm:flex-row gap-3 pt-4">
-
-					<a
-						href="#contacts"
-						onClick={closeModal}
-						className="flex-1 text-center bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:translate-y-[-2px] transition"
-					>
-						📞 Записаться на просмотр
-					</a>
-
-					<button
-						onClick={closeModal}
-						className="px-8 py-4 rounded-xl border border-gray-300 hover:bg-gray-50 transition"
-					>
-						Закрыть
-					</button>
-
-					</div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         )}
 
-        {/* FULL IMAGE VIEW */}
         {activeImage && (
           <div
             onClick={() => setActiveImage(null)}
-            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/80 z-[110] flex items-center justify-center p-4"
           >
             <img
               src={activeImage}
