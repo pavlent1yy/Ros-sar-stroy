@@ -1,7 +1,7 @@
 export type RealEstateObject = {
   id: number;
 
-  status: "В продаже" | "Продан" | "Аренда";
+  status: "В продаже" | "Продан" | "Аренда" | "Снято";
 
   title: string;
 
